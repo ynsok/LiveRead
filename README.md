@@ -2,6 +2,7 @@
 
 I'm taking data from https://newsapi.org/ and  showing depends on category, the next step will be  to give possible to search by Keywords
 and dynamically show the results 
+
 To these project I'm using :
  
 Kotlin - MVVM - LiveData - Room -DataBinding - WorkManager - Retrofit2
