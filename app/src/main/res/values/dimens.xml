@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="tabs_height">56dp</dimen>
+    <dimen name="text_size_source">15sp</dimen>
+    <dimen name="text_size_title">18sp</dimen>
+    <dimen name="list_item_left_margin">10dp</dimen>
+</resources>

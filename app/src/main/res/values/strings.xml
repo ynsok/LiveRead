@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">Live Read</string>
+
+    <string name="SHARED_PREF">Shered Pref</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="imageviewlistitem">imageViewListItem</string>
+    <string name="source_Const_name">Source:</string>
+    <string name="imagedetail">imageDetail</string>
+    <string name="icondetailactivity">IconDetailActivity</string>
+    <string name="to_read_more_click_button"> <u>Read More</u> </string>
+    <string name="search">Search</string>
+</resources>
