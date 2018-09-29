@@ -1,4 +1,5 @@
 # LiveRead 
+The application is being created..
 
 I'm taking data from https://newsapi.org/ and  showing depends on category, the next step will be  to give possible to search by Keywords
 and dynamically show the results 
