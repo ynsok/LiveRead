@@ -11,4 +11,5 @@
     <string name="icondetailactivity">IconDetailActivity</string>
     <string name="to_read_more_click_button"> <u>Read More</u> </string>
     <string name="search">Search</string>
+    <string name="SEARCH_VIEW">search_View</string>
 </resources>

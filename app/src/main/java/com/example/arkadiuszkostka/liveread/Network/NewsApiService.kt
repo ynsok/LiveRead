@@ -19,6 +19,7 @@ interface NewsApiService {
                                   @Query("category") category: String,
                                   @Query("q") q: String,
                                   @Query("source") source: String,
+                                  @Query("pageSize") pageSize: String,
                                   @Header("authorization") authorization: String
                                   ): Call<Model.Result>
 

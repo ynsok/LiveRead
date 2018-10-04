@@ -16,9 +16,13 @@ import kotlinx.android.synthetic.main.fragment_main__activity__one.*
 
 class Main_Activity_One : Fragment() {
     private val BUNDLE = "Bundle"
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments!!.getString(Main_Activity_One.oneIDN, "")
+        retainInstance = true
+        logInfo("onCreate", this)
+
     }
 
 
@@ -29,11 +33,11 @@ class Main_Activity_One : Fragment() {
 
         binding.mViewPager.adapter = PagerAdapter(childFragmentManager)
         binding.mTablayout.setupWithViewPager(binding.mViewPager, true)
+        logInfo("onCreateView", this)
+
 
 
         if (savedInstanceState != null) {
-//            binding.mViewPager.setCurrentItem(savedInstanceState.getInt(BUNDLE), true)
-            logInfo(savedInstanceState.getInt(BUNDLE).toString() +"onCreate",this)
             binding.mViewPager.currentItem = savedInstanceState.getInt(BUNDLE)
 
         }
@@ -42,8 +46,8 @@ class Main_Activity_One : Fragment() {
 
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
-        outState.putInt(BUNDLE,mViewPager.currentItem)
-        logInfo(mViewPager.currentItem.toString() +"onSave",this)
+        outState.putInt(BUNDLE, mViewPager.currentItem)
+        logInfo(mViewPager.currentItem.toString() + "onSave", this)
 
     }
 

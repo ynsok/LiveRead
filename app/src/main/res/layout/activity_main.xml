@@ -10,18 +10,24 @@
         tools:context=".UI.MainActivity">
 
 
-
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar_mainActivity"
             android:layout_width="match_parent"
-            app:layout_collapseMode="pin"
             android:layout_height="?attr/actionBarSize"
-            android:background="@color/colorPrimary" />
+            android:background="@color/colorPrimary"
+            app:layout_collapseMode="pin" />
 
 
         <FrameLayout
-            android:id="@+id/Main_Activity_Include"
+            android:id="@+id/Main_Activity_Include_One"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:visibility="visible" />
+
+        <FrameLayout
+            android:id="@+id/Main_Activity_Include_Second"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone" />
     </LinearLayout>
 </layout>

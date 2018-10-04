@@ -93,6 +93,21 @@ interface NewsDao {
     fun getTechnologyNewsById(id: Int):LiveData<TechnologyEntry>
 
 
+    //    All for Keyword Table
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun insertAllKeywordArticles(listOfArticle: List<KeywordEntry>)
+
+    @Query("Delete FROM keyword ")
+    fun deleteAllKeywordArticles()
+
+    @Query("Select * FROM keyword")
+    fun getAllKeywordNews(): LiveData<List<KeywordEntry>>
+
+    @Query("Select * FROM keyword WHERE id = :id")
+    fun getKeywordNewsById(id: Int):LiveData<KeywordEntry>
+
+
+
 
 
 

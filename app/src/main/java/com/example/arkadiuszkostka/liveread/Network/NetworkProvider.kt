@@ -17,9 +17,11 @@ class NetworkProvider private constructor(private val newsApiService: NewsApiSer
     private val scienceData: MutableLiveData<Model.Result>
     private val sportsData: MutableLiveData<Model.Result>
     private val technologyData: MutableLiveData<Model.Result>
+    private val respondByKeyword: MutableLiveData<Model.Result>
 
 
     init {
+        respondByKeyword = MutableLiveData()
         healthData = MutableLiveData()
         entertimentData = MutableLiveData()
         scienceData = MutableLiveData()
@@ -28,16 +30,30 @@ class NetworkProvider private constructor(private val newsApiService: NewsApiSer
 
     }
 
-    private fun searchNewsData(type: String, country: String, category: String, q: String, source: String, autorization: String): Call<Model.Result> {
+    private fun searchNewsData(type: String, country: String, category: String, q: String, source: String, pageSize: String, autorization: String): Call<Model.Result> {
         logInfo("searchNewsData", this)
 
-        return newsApiService.getArticlerListByTwoQuery(type, country, category, q, source, autorization)
+        return newsApiService.getArticlerListByTwoQuery(type, country, category, q, source, pageSize, autorization)
 
     }
 
-    //Calling to take businessData from API
+    fun getQueryDataFromAPI(keyword: String) {
+        searchNewsData("everything", "", "", keyword, "", "50", KEY_API).enqueue(object : Callback<Model.Result> {
+            override fun onFailure(call: Call<Model.Result>?, t: Throwable?) {
+                logInfo("Failure Everythin + ${t.toString()}", this)
+            }
+
+            override fun onResponse(call: Call<Model.Result>?, response: Response<Model.Result>?) {
+                getRespondByKeywords().postValue(response?.body())
+            }
+
+        })
+
+    }
+
+    //Calling to take TopHeadlinesData from API
     fun getBusinessInformation(country: String, category: String) {
-        searchNewsData("top-headlines", "US", category, "", "", KEY_API).enqueue(object : Callback<Model.Result> {
+        searchNewsData("top-headlines", "US", category, "", "", "50", KEY_API).enqueue(object : Callback<Model.Result> {
             override fun onFailure(call: Call<Model.Result>?, t: Throwable?) {
                 logInfo(t.toString(), this)
                 logInfo(" $country", this)
@@ -77,17 +93,25 @@ class NetworkProvider private constructor(private val newsApiService: NewsApiSer
     fun getEntertimentDataFromAPI(): MutableLiveData<Model.Result> {
         return entertimentData
     }
+
     fun getHealthDataFromAPI(): MutableLiveData<Model.Result> {
         return healthData
     }
+
     fun getScienceDataFromAPI(): MutableLiveData<Model.Result> {
         return scienceData
     }
+
     fun getSportsDataFromAPI(): MutableLiveData<Model.Result> {
         return sportsData
     }
+
     fun getTechnologyDataFromAPI(): MutableLiveData<Model.Result> {
         return technologyData
+    }
+
+    fun getRespondByKeywords(): MutableLiveData<Model.Result> {
+        return respondByKeyword
     }
 
     //    Provide static method if is networkConnection, and NetworkRepositori which is responsability of make call

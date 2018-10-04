@@ -32,6 +32,9 @@ fun ViewGroup.inflate(): LayoutInflater {
 
     return LayoutInflater.from(context)
 }
+fun  initialKeywordViewModel(fragment: Fragment): LiveData<List<KeywordEntry>>{
+    return ViewModelProviders.of(fragment).get(MainActivityViewModelSecond::class.java).getDataByKeyword()
+}
 
  fun initialBusinessViewModel(fragment: Fragment): LiveData<List<BusinessEntry>> {
     return ViewModelProviders.of(fragment).get(BusinessViewModel::class.java)

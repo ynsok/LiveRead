@@ -85,6 +85,13 @@ class DetailActivity : AppCompatActivity() {
                     takeDataFromDB(it, mBinding, nameOfCategory)
                 }
             })
+            Main_Activity_Second.CATEGORY -> viewModel.keywordData?.observe(this, Observer {
+                if (it != null) {
+                    logInfo(it.author.toString(), this)
+
+                    takeDataFromDB(it, mBinding, it.nameOfSource)
+                }
+            })
 
 
         }
@@ -124,7 +131,7 @@ class DetailActivity : AppCompatActivity() {
     }
 
 
-    private fun <T : NewsBase> takeDataFromDB(data: T, mBinding: ActivityDetailBinding, category: String) {
+    private fun <T : NewsBase> takeDataFromDB(data: T, mBinding: ActivityDetailBinding, category: String?) {
 
         mBinding.setVariable(BR.detail, data)
         mBinding.executePendingBindings()
@@ -136,7 +143,6 @@ class DetailActivity : AppCompatActivity() {
         }
 
     }
-
 
     companion object {
         const val URL_PAGE = "urlToPage"

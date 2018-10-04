@@ -15,6 +15,8 @@ class DetailViewModel(repository: Repository, id: Int, source: String) : ViewMod
     var scienceData: LiveData<ScienceEntry>? = null
     var sportsData: LiveData<SportsEntry>? = null
     var technologyData: LiveData<TechnologyEntry>? = null
+    var keywordData: LiveData<KeywordEntry>? = null
+
 
     init {
         when (source) {
@@ -24,6 +26,7 @@ class DetailViewModel(repository: Repository, id: Int, source: String) : ViewMod
             Science.CATEGORY -> scienceData = repository.getScienceDataById(id)
             Sports.CATEGORY -> sportsData = repository.getSportsDataById(id)
             Technology.CATEGORY -> technologyData = repository.getTechnologyDataById(id)
+            Main_Activity_Second.CATEGORY -> keywordData = repository.getKeywordByID(id)
 
 
         }

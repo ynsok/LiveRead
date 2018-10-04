@@ -6,7 +6,7 @@ import android.arch.persistence.room.RoomDatabase
 import android.content.Context
 import com.example.arkadiuszkostka.liveread.Extention.logInfo
 
-@Database(entities = [(BusinessEntry::class), (EntertainmentEntry::class), (HealthEntry::class), (ScienceEntry::class), (SportsEntry::class), (TechnologyEntry::class)]
+@Database(entities = [(BusinessEntry::class), (EntertainmentEntry::class), (HealthEntry::class), (ScienceEntry::class), (SportsEntry::class), (TechnologyEntry::class),(KeywordEntry::class)]
         , version = 1, exportSchema = false)
 abstract class DataBaseCreator : RoomDatabase() {
 

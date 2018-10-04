@@ -110,6 +110,25 @@ class TechnologyEntry(mAuthor: String? = null,
                 idOfSource = mIdOfSource,
                 nameOfSource = mNameOfSource,id = id)
 
+@Entity(tableName = "keyword", indices = [(Index(value = arrayOf("publishedAt"), unique = true))])
+class KeywordEntry(mAuthor: String? = null,
+                      mTitle: String? = null,
+                      mDescription: String? = null,
+                      mUrl: String? = null,
+                      mUrlToImage: String? = null,
+                      mPublishedAt: String? = null,
+                      mIdOfSource: String? = null,
+                      mNameOfSource: String? = null,
+                      id: Int =0) :
+        NewsBase(author = mAuthor,
+                title = mTitle, description = mDescription,
+                url = mUrl,
+                urlToImage = mUrlToImage,
+                publishedAt = mPublishedAt,
+                idOfSource = mIdOfSource,
+                nameOfSource = mNameOfSource,id = id)
+
+
 
 
 

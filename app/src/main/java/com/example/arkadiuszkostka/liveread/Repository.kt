@@ -98,6 +98,22 @@ class Repository private constructor(private val networkProvider: NetworkProvide
         })
     }
 
+    init {
+        val takeCurrentlyKeywordData = networkProvider.getRespondByKeywords()
+        takeCurrentlyKeywordData.observeForever({ t ->
+            executor.diskIO().execute {
+                logInfo("workForKeywordEntry", this)
+                newsDao.deleteAllKeywordArticles()
+                val keywordEntry: List<KeywordEntry> = createKeywordEntryModel(t?.articles!!)
+                newsDao.insertAllKeywordArticles(keywordEntry)
+            }
+        })
+    }
+
+    fun getKeywordInViewModel(): LiveData<List<KeywordEntry>> = newsDao.getAllKeywordNews()
+    fun getKeywordByID(id: Int): LiveData<KeywordEntry> = newsDao.getKeywordNewsById(id)
+    fun deleteAllKeywordData() = executor.diskIO().execute { newsDao.deleteAllKeywordArticles() }
+
     fun getBusinessDataInViewModel(): LiveData<List<BusinessEntry>> = newsDao.getAllBusinessNews()
     fun getBusinessDataById(id: Int): LiveData<BusinessEntry> = newsDao.getBusinessNewsById(id)
 
@@ -282,6 +298,30 @@ class Repository private constructor(private val networkProvider: NetworkProvide
         articles.forEachIndexed { index, articles ->
             listOfNewsEntry.add(
                     TechnologyEntry(
+                            articles.author,
+                            articles.title,
+                            articles.description,
+                            articles.url,
+                            articles.urlToImage,
+                            articles.publishedAt,
+                            articles.source.id,
+                            articles.source.name,
+                            index
+                    )
+            )
+            logInfo(index.toString(), this)
+        }
+        return listOfNewsEntry
+
+    }
+
+    private fun createKeywordEntryModel(articles: List<Model.Articles>): MutableList<KeywordEntry> {
+
+        val listOfNewsEntry = mutableListOf<KeywordEntry>()
+
+        articles.forEachIndexed { index, articles ->
+            listOfNewsEntry.add(
+                    KeywordEntry(
                             articles.author,
                             articles.title,
                             articles.description,
