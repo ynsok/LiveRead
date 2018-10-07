@@ -2,7 +2,8 @@
 The application is being created..
 
 I'm taking data from https://newsapi.org/ and  showing depends on category, the next step will be  
-1.~~to give possible to search by Keywords and dynamically show the results ~~
+
+
 2.give the opportunity to save the post
 3. create widget
 
