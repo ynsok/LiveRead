@@ -3,9 +3,7 @@ The application is being created..
 
 I'm taking data from https://newsapi.org/ and  showing depends on category, the next step will be  
 
-
-2.give the opportunity to save the post
-3. create widget
+The next step is to create StackWidget which will be contain posts
 
 To these project I'm using :
  
